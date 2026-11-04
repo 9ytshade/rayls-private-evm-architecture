@@ -1,0 +1,57 @@
+name: Verify Week 6 Private EVM Research & Test Suite
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  foundry-tests:
+    name: Run Foundry Invariant & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Verify Foundry Version
+        run: |
+          forge --version
+          cast --version
+
+      - name: Run Foundry Test Suite
+        run: |
+          forge test -vvv
+
+  python-benchmarks:
+    name: Run Engine & Mempool Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Engine Latency & Mempool Benchmark
+        run: |
+          python scripts/private_evm_engine_benchmark.py
+
+      - name: Validate Generated Datasets
+        run: |
+          python -c "
+          import json
+          for f in ['data/evm_engine_benchmark_results.json', 'data/foundry_test_results.json', 'data/rayls_reth_node_telemetry.json']:
+              data = json.load(open(f))
+              print(f'[✓] Valid JSON: {f}')
+          "

@@ -1,0 +1,83 @@
+{
+  "test_suite_metadata": {
+    "title": "PrivateEVMInstitutionalGate Foundry Verification Suite",
+    "compiler": "Solc 0.8.24",
+    "optimizer_runs": 200,
+    "framework": "Foundry (forge 0.2.0)",
+    "timestamp_utc": "2026-11-03T16:23:16Z",
+    "total_tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "execution_time_ms": 40.65
+  },
+  "test_results": [
+    {
+      "test_name": "test_ValidInstitutionalPrivateExecution",
+      "status": "PASS",
+      "gas_consumed": 259546,
+      "category": "Happy Path State Transition",
+      "description": "Verifies valid private balance debit/credit, sequential nonce increment, and receipt commitment."
+    },
+    {
+      "test_name": "test_RevertIf_UnauthorizedCaller",
+      "status": "PASS",
+      "gas_consumed": 39457,
+      "category": "Counterfactual Identity Gate",
+      "revert_error": "UnauthorizedInstitutionalCaller(address)",
+      "description": "Unregistered attacker rejected at gate prior to execution."
+    },
+    {
+      "test_name": "test_RevertIf_SequenceTampered",
+      "status": "PASS",
+      "gas_consumed": 44634,
+      "category": "Counterfactual Nonce Gate",
+      "revert_error": "InvalidExecutionSequence(uint256,uint256)",
+      "description": "Out-of-order sequence nonce rejected, enforcing monotonic sequencing."
+    },
+    {
+      "test_name": "test_RevertIf_NonceReplayed",
+      "status": "PASS",
+      "gas_consumed": 261922,
+      "category": "Counterfactual Replay Protection",
+      "revert_error": "InvalidExecutionSequence(uint256,uint256)",
+      "description": "Second execution of already-processed nonce 0 reverts deterministically."
+    },
+    {
+      "test_name": "test_RevertIf_CollateralInsufficient",
+      "status": "PASS",
+      "gas_consumed": 67580,
+      "category": "Counterfactual Balance Gate",
+      "revert_error": "InsufficientInstitutionalCollateral(uint256,uint256)",
+      "description": "Overspend transfer exceeding ledger balance reverts without state mutation."
+    },
+    {
+      "test_name": "test_RevertIf_InstitutionalLaneSuspended",
+      "status": "PASS",
+      "gas_consumed": 71467,
+      "category": "Regulatory Access Control Gate",
+      "revert_error": "InstitutionalLaneSuspended(address)",
+      "description": "Supervisor regulatory status suspension instantly halts institutional transaction execution."
+    },
+    {
+      "test_name": "test_DeterministicGasProfiling",
+      "status": "PASS",
+      "gas_consumed": 959515,
+      "category": "Gas Determinism & Invariant Profiling",
+      "gas_trace_samples": [
+        { "transaction": 1, "gas": 224300, "phase": "Cold storage write (receipt + balance init)" },
+        { "transaction": 2, "gas": 173009, "phase": "Warm steady-state execution" },
+        { "transaction": 3, "gas": 173010, "phase": "Warm steady-state execution" },
+        { "transaction": 4, "gas": 173011, "phase": "Warm steady-state execution" },
+        { "transaction": 5, "gas": 173013, "phase": "Warm steady-state execution" }
+      ],
+      "steady_state_variance_gas": 4,
+      "description": "Demonstrates deterministic execution cost: steady-state gas consumption varies by only 4 gas units across consecutive private transactions."
+    }
+  ],
+  "epistemic_scope_declarations": [
+    "Tests verify the state-machine invariants of an illustrative institutional private EVM gateway.",
+    "Deterministic gas profiling confirms execution cost predictability on EVM.",
+    "Conducted in local Foundry EVM runtime under Solc 0.8.24; distinct from closed-source enterprise node internals."
+  ]
+}

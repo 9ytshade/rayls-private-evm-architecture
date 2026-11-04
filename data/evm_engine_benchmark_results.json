@@ -1,0 +1,71 @@
+{
+  "benchmark_metadata": {
+    "title": "Private EVM vs. Public/Geth Architecture Comparative Benchmark",
+    "timestamp_utc": "2026-11-04T05:55:20Z",
+    "sample_size": 1000,
+    "institutional_sla_threshold_ms": 25.0
+  },
+  "mempool_privacy_benchmark": {
+    "public_gossiped_mempool": {
+      "mean_exposure_window_seconds": 13.42,
+      "mean_peer_gossip_latency_ms": 320.04,
+      "adversarial_node_visibility_pct": 100.0,
+      "front_running_vulnerability_index": 0.92
+    },
+    "rayls_sovereign_private_queue": {
+      "mean_exposure_window_seconds": 0.0,
+      "mean_peer_gossip_latency_ms": 0.0,
+      "adversarial_node_visibility_pct": 0.0,
+      "front_running_vulnerability_index": 0.0
+    }
+  },
+  "execution_latency_statistics": {
+    "go_geth_runtime": {
+      "percentiles": {
+        "mean_ms": 3.451,
+        "median_p50_ms": 1.862,
+        "p90_ms": 2.373,
+        "p95_ms": 2.552,
+        "p99_ms": 73.2,
+        "p99_9_ms": 85.556,
+        "max_ms": 85.556,
+        "std_dev_ms": 10.01
+      },
+      "institutional_sla_breaches": {
+        "count": 27,
+        "percentage": 2.7
+      },
+      "memory_growth_profile": {
+        "initial_mb": 180.24,
+        "peak_mb": 201.66,
+        "final_mb": -151.91
+      }
+    },
+    "rust_reth_runtime": {
+      "percentiles": {
+        "mean_ms": 1.151,
+        "median_p50_ms": 1.156,
+        "p90_ms": 1.376,
+        "p95_ms": 1.452,
+        "p99_ms": 1.561,
+        "p99_9_ms": 1.663,
+        "max_ms": 1.663,
+        "std_dev_ms": 0.179
+      },
+      "institutional_sla_breaches": {
+        "count": 0,
+        "percentage": 0.0
+      },
+      "memory_growth_profile": {
+        "initial_mb": 65.03,
+        "peak_mb": 89.49,
+        "final_mb": 89.49
+      }
+    }
+  },
+  "epistemic_scope_declarations": [
+    "Controlled empirical simulation modeling Go runtime garbage-collection pauses and LevelDB compaction versus Rust Reth zero-copy MDBX memory mapping.",
+    "Demonstrates why financial institutions requiring strict <25ms DvP execution SLAs and banking secrecy cannot tolerate public gossiped mempools or Go GC tail-latency spikes.",
+    "Local benchmark model with clearly defined assumptions; distinct from multi-node live mainnet consensus."
+  ]
+}
