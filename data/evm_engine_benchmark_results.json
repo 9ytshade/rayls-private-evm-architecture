@@ -1,7 +1,7 @@
 {
   "benchmark_metadata": {
     "title": "Private EVM vs. Public/Geth Architecture Comparative Benchmark",
-    "timestamp_utc": "2026-11-04T05:55:20Z",
+    "timestamp_utc": "2026-11-04T06:25:30Z",
     "sample_size": 1000,
     "institutional_sla_threshold_ms": 25.0
   },

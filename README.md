@@ -158,7 +158,8 @@ python scripts/private_evm_engine_benchmark.py
 │   ├── cover_image_private_evm.png           # Master cover asset
 │   ├── diagram_1_enterprise_dlt_evolution.png# Figure 1: The Three Eras of DLT
 │   ├── diagram_2_reth_mdbx_architecture.png  # Figure 2: Geth vs. Reth Execution Pipeline
-│   └── evidence_boundary_matrix_table.png    # Figure 3: Complete 4-Category Matrix
+│   ├── evidence_boundary_matrix_table.png    # Figure 3: Complete 4-Category Matrix
+│   └── final cut.mp4                         # Narrated terminal screen recording demonstration
 ├── WHAT_IS_A_PRIVATE_EVM_AND_WHY_BANKS_NEED_ONE.md # Master 3,500+ Word Research Article
 ├── CROSS_POST_SUMMARY.md                     # Executive Short-Form Cross-Post Package
 ├── run_all_week6_demonstrations.sh           # Master one-line reproduction runner
