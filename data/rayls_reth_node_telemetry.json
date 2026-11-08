@@ -11,7 +11,7 @@
   },
   "node_specification": {
     "client_version": "1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede)",
-    "is_reth_rust": false,
+    "is_reth_rust": true,
     "chain_id": 72957,
     "chain_id_hex": "0x11cfd",
     "gas_price_wei": 48000000000,

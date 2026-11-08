@@ -109,7 +109,7 @@ python scripts/private_evm_engine_benchmark.py
 | Row | Tested Property | Epistemic Boundary | Exact Artifact / Source | Result |
 |:---:|:---|:---|:---|:---|
 | **1** | Client Version | **[Category 1: Live On-Chain]** | `web3_clientVersion` RPC | `1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede)` [Rust Reth] |
-| **2** | Canonical Head Block | **[Category 1: Live On-Chain]** | `eth_blockNumber` | `#13,779,415+` (Live mainnet state) |
+| **2** | Canonical Head Block | **[Category 1: Live On-Chain]** | `eth_blockNumber` | `#13,817,772+` (Live mainnet state) |
 | **3** | Protocol Gas Ceiling | **[Category 1: Live On-Chain]** | `eth_getBlockByNumber` | `500,000,000 gas` (Computational execution headroom) |
 | **4** | Median Block Cadence | **[Category 1: Live On-Chain]** | Sampled 500 blocks | `1.30s median cadence` (1.34s mean) |
 | **5** | Base Gas Price | **[Category 1: Live On-Chain]** | `eth_gasPrice` RPC query | `48.00 gwei` (`48,000,000,000 wei`) |

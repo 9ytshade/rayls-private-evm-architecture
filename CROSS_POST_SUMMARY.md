@@ -38,8 +38,8 @@ Standard Geth is written in Go, whose concurrent garbage collector introduces St
 ---
 
 ### 4/ Live Mainnet Telemetry (Rayls Public L1)
-We probed the live Rayls Public Chain (Chain ID `72957`) across a 500-block sample at Block `#13,779,415+`:
-• **Client Version:** `reth/v1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede)` — confirming native Rust Reth execution in production.
+We probed the live Rayls Public Chain (Chain ID `72957`) across a 500-block sample at Block `#13,817,772+`:
+• **Client Version:** `1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede)` [Reth in Rust] — confirming native Rust Reth execution in production.
 • **500M Gas Limit:** Protocol block gas ceiling providing massive execution headroom.
 • **Consensus Cadence:** 1.30-second median block time under Axyl BFT.
 
@@ -78,7 +78,7 @@ Read the full 3,500-word empirical breakdown and run the reproducible test suite
 • **Master Technical Article:** https://github.com/9ytshade/rayls-private-evm-architecture/blob/main/WHAT_IS_A_PRIVATE_EVM_AND_WHY_BANKS_NEED_ONE.md
 • **Medium / Cross-Post Link:** [INSERT YOUR MEDIUM LINK HERE]
 • **Foundry Verification Suite:** 7/7 Passing EVM Unit & Invariant Tests (`forge test -vvv`)
-• **Live On-Chain RPC Telemetry:** Rayls Public Chain ID 72957, Block #13,779,415+, Reth 1.4.2 (b19896a1) node verification, 500M gas ceiling, 1.30s median block cadence
+• **Live On-Chain RPC Telemetry:** Rayls Public Chain ID 72957, Block #13,817,772+, Reth 1.4.2 (b19896a1) node verification, 500M gas ceiling, 1.30s median block cadence
 • **Controlled Engine Latency Benchmark (N=1,000):** Public mempool 13.42s exposure vs. Rayls 0.00s; Go Geth p99 latency 73.20ms (2.7% SLA breaches) vs. Rayls Rust Reth p99 latency 1.56ms (0% SLA breaches)
 • **Assets & CI Included:** Automated GitHub Actions workflow (`.github/workflows/verify.yml`), Narrated terminal screen recording (`final cut.mp4`), 3 custom Noir Ventures diagrams, 20-row Evidence Boundary Matrix table, and 3 raw machine-readable JSON datasets in `data/`.
 ```

@@ -4,7 +4,7 @@
 **Author:** The Rail Research Labs  
 **Date:** November 2026  
 **Target Repository:** `github.com/9ytshade/rayls-private-evm-architecture`  
-**Live Network Environment:** Rayls Public Chain (Chain ID: `72957`, Block `#13,779,415+`)  
+**Live Network Environment:** Rayls Public Chain (Chain ID: `72957`, Block `#13,817,772+`)  
 **Execution Runtime:** Paradigm's Reth `1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede)`  
 **Verification Framework:** Foundry (`forge` 0.2.0, Solc `0.8.24`)  
 
@@ -52,7 +52,7 @@ Conversely, legacy enterprise blockchains (Hyperledger Fabric, R3 Corda) preserv
 
 This paper provides an empirical systems investigation into the architecture of a **Private EVM**—specifically examining **Rayls Sovereign Subnets** powered by **Paradigm's Reth in Rust**. 
 
-Through live telemetry from the Rayls Public L1 (Chain ID `72957`, Block `#13,779,415+`), a controlled $N=1,000$ engine latency benchmark, and a 7-test Foundry invariant verification suite, we demonstrate why financial institutions require a dedicated private execution environment.
+Through live telemetry from the Rayls Public L1 (Chain ID `72957`, Block `#13,817,772+`), a controlled $N=1,000$ engine latency benchmark, and a 7-test Foundry invariant verification suite, we demonstrate why financial institutions require a dedicated private execution environment.
 
 ---
 
@@ -147,7 +147,7 @@ A Private EVM decouples transaction sequencing from public gas auctions. Within 
 To ground our analysis in observable reality rather than theoretical assertions, we queried the live **Rayls Public Chain (L1)** and conducted controlled benchmark simulations.
 
 ### 1. Live Rayls Public Node Telemetry (Chain ID `72957`)
-Using `scripts/rayls_node_telemetry_audit.py`, we sampled 500 consecutive blocks ending at head block `#13,779,415` on the live Rayls Public RPC (`https://mainnet-rpc.rayls.com`):
+Using `scripts/rayls_node_telemetry_audit.py`, we sampled 500 consecutive blocks ending at head block `#13,817,772` on the live Rayls Public RPC (`https://mainnet-rpc.rayls.com`):
 
 ```json
 {
@@ -161,11 +161,13 @@ Using `scripts/rayls_node_telemetry_audit.py`, we sampled 500 consecutive blocks
   },
   "consensus_and_execution_metrics": {
     "canonical_block_gas_limit": 500000000,
-    "mean_block_cadence_seconds": 1.34,
+    "mean_block_cadence_seconds": 1.348,
     "median_block_cadence_seconds": 1.30,
     "rpc_roundtrip_latency_ms": {
-      "mean_ms": 4206.4,
-      "median_ms": 4206.4
+      "mean_ms": 305.21,
+      "median_ms": 282.93,
+      "min_ms": 239.26,
+      "max_ms": 571.19
     }
   }
 }
@@ -206,18 +208,18 @@ def calculate_percentiles(data):
 | **Mempool Exposure Window** | **13.42 seconds** | **0.00 seconds** | **-100% (Zero Leakage)** |
 | **Adversarial Node Visibility** | **100.0%** | **0.0%** | **Total Confidentiality** |
 | **Median Latency ($p50$)** | **1.862 ms** | **1.156 ms** | **1.61x Faster** |
-| **90th Percentile ($p90$)** | **2.310 ms** | **1.380 ms** | **1.67x Faster** |
+| **90th Percentile ($p90$)** | **2.373 ms** | **1.376 ms** | **1.72x Faster** |
 | **99th Percentile ($p99$)** | **73.200 ms** (GC pause) | **1.561 ms** (Zero GC) | **46.9x Faster** |
 | **99.9th Percentile ($p99.9$)** | **85.556 ms** | **1.663 ms** | **51.4x Faster** |
-| **Latency Std Deviation** | **11.450 ms** | **0.180 ms** | **63.6x More Stable** |
+| **Latency Std Deviation** | **10.010 ms** | **0.179 ms** | **55.9x More Stable** |
 | **SLA Breaches ($>25\text{ms}$)** | **27 / 1,000 (2.7%)** | **0 / 1,000 (0.0%)** | **100% SLA Adherence** |
 
 ```
 EXECUTION LATENCY PERCENTILE DISTRIBUTION (ms):
 Percentile    Go Geth (GC)          Rayls Reth (Rust)     Difference
 p50           1.86 ms               1.16 ms               -37.9%
-p90           2.31 ms               1.38 ms               -40.3%
-p95           2.85 ms               1.45 ms               -49.1%
+p90           2.37 ms               1.38 ms               -42.0%
+p95           2.55 ms               1.45 ms               -43.1%
 p99          73.20 ms               1.56 ms               -97.9% (GC spike eliminated)
 p99.9        85.56 ms               1.66 ms               -98.1% (Compaction stall eliminated)
 ```
@@ -346,7 +348,7 @@ In strict adherence to the Master Audit Playbook, every empirical claim is categ
 | Row | Tested Property / Invariant | Epistemic Boundary Category | Artifact / Test Method | Observed Empirical Result |
 |:---:|:---|:---|:---|:---|
 | **1** | Client Version | **Category 1: Live On-Chain** | `web3_clientVersion` RPC | `1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede)` [Rust Reth] |
-| **2** | Canonical Head Block | **Category 1: Live On-Chain** | `eth_blockNumber` (72957) | `#13,779,415+` (Live mainnet state) |
+| **2** | Canonical Head Block | **Category 1: Live On-Chain** | `eth_blockNumber` (72957) | `#13,817,772+` (Live mainnet state) |
 | **3** | Protocol Gas Ceiling | **Category 1: Live On-Chain** | `eth_getBlockByNumber` | `500,000,000 gas` (Computational execution headroom) |
 | **4** | Median Block Cadence | **Category 1: Live On-Chain** | Sampled 500 blocks | `1.30s median cadence` (1.34s mean) |
 | **5** | Base Gas Price | **Category 1: Live On-Chain** | `eth_gasPrice` RPC query | `48.00 gwei` (`48,000,000,000 wei`) |

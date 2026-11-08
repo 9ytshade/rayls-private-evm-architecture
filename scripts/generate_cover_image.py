@@ -158,7 +158,7 @@ def main():
     font_bar_text = get_font("segoeui.ttf", 15)
     
     draw.text((115, banner_y + 26), "EMPIRICAL SCOPE:", font=font_bar_bold, fill=(236, 251, 62, 255))
-    scope_str = "Verified on Rayls Public L1 (#13,779,415+) & Controlled N=1,000 Engine Trace Latency Benchmark. Foundry Suite 7/7 Passing."
+    scope_str = "Verified on Rayls Public L1 (#13,817,772+) & Controlled N=1,000 Engine Trace Latency Benchmark. Foundry Suite 7/7 Passing."
     draw.text((280, banner_y + 27), scope_str, font=font_bar_text, fill=(210, 210, 220, 255))
 
     # Save output

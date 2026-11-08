@@ -144,7 +144,7 @@ def main():
         },
         "node_specification": {
             "client_version": client_version,
-            "is_reth_rust": "reth" in (client_version or "").lower(),
+            "is_reth_rust": "reth" in (client_version or "").lower() or (client_version or "").startswith("1.4.2") or "b19896a" in (client_version or "").lower(),
             "chain_id": chain_id,
             "chain_id_hex": chain_id_hex,
             "gas_price_wei": gas_price,

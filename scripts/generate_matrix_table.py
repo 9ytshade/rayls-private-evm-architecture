@@ -65,7 +65,7 @@ def main():
     rows_data = [
         # CATEGORY 1: Live On-Chain Checks
         ("1", "Client Version", "Category 1: Live On-Chain", "web3_clientVersion via JSON-RPC", "1.4.2 (b19896a12cfc1f1f775c33196c940f3345c00ede) [Rust Reth]", (120, 220, 160, 255)),
-        ("2", "Canonical Head Block", "Category 1: Live On-Chain", "eth_blockNumber (Rayls L1: 72957)", "#13,779,415+ (Captured 2026-11-03)", (120, 220, 160, 255)),
+        ("2", "Canonical Head Block", "Category 1: Live On-Chain", "eth_blockNumber (Rayls L1: 72957)", "#13,817,772+ (Captured 2026-11-04)", (120, 220, 160, 255)),
         ("3", "Protocol Gas Ceiling", "Category 1: Live On-Chain", "eth_getBlockByNumber (500 blocks)", "500,000,000 gas limit (Protocol execution headroom)", (120, 220, 160, 255)),
         ("4", "Median Block Cadence", "Category 1: Live On-Chain", "Sampled 500 consecutive blocks", "1.30s median cadence (1.34s mean)", (120, 220, 160, 255)),
         ("5", "Base Gas Price", "Category 1: Live On-Chain", "eth_gasPrice RPC query", "48.00 gwei (48,000,000,000 wei)", (120, 220, 160, 255)),
