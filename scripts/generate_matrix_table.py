@@ -40,8 +40,8 @@ def main():
         draw.text((90, 45), "Rayls", font=get_font("segoeuib.ttf", 32), fill=(255, 255, 255, 255))
 
     font_header_pill = get_font("segoeuib.ttf", 13)
-    draw.rounded_rectangle([1320, 50, 1830, 85], radius=8, fill=(35, 35, 42, 255), outline=(65, 65, 75, 255), width=1)
-    draw.text((1345, 59), "SCIENTIFIC RIGOR & EPISTEMIC BOUNDARIES", font=font_header_pill, fill=(180, 154, 255, 255))
+    draw.rounded_rectangle([1430, 50, 1830, 85], radius=8, fill=(35, 35, 42, 255), outline=(65, 65, 75, 255), width=1)
+    draw.text((1455, 59), "FIGURE 3: EVIDENCE BOUNDARY MATRIX", font=font_header_pill, fill=(180, 154, 255, 255))
 
     font_main_title = get_font("segoeuib.ttf", 34)
     font_sub_title = get_font("segoeui.ttf", 17)

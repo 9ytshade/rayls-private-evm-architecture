@@ -53,8 +53,8 @@ def main():
         draw.text((80, 50), "Rayls", font=get_font("segoeuib.ttf", 30), fill=(255, 255, 255, 255))
 
     font_header_pill = get_font("segoeuib.ttf", 13)
-    draw.rounded_rectangle([1050, 55, 1520, 88], radius=8, fill=(35, 35, 42, 255), outline=(65, 65, 75, 255), width=1)
-    draw.text((1075, 64), "ARCHITECTURAL TOPOLOGY BENCHMARK // FIGURE 1", font=font_header_pill, fill=(180, 154, 255, 255))
+    draw.rounded_rectangle([1180, 55, 1520, 88], radius=8, fill=(35, 35, 42, 255), outline=(65, 65, 75, 255), width=1)
+    draw.text((1205, 64), "FIGURE 1: TOPOLOGY BENCHMARK", font=font_header_pill, fill=(180, 154, 255, 255))
 
     # Titles
     font_main_title = get_font("segoeuib.ttf", 32)
